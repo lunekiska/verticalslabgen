@@ -40,7 +40,7 @@ public class VerticalSlabGen implements ModInitializer {
 
     public static final VertSlabGenPack RESOURCE_PACK;
 
-    public static final ItemGroup VerticalSlabsGroup = FabricItemGroupBuilder.build(new Identifier(NAMESPACE, "vertical_slabs"), () -> new ItemStack(AurorasDecoRegistry.TUFF_SLAB));
+    public static final ItemGroup VerticalSlabsGroup = FabricItemGroupBuilder.build(new Identifier(NAMESPACE, "vertical_slabs_group"), () -> new ItemStack(AurorasDecoRegistry.TUFF_SLAB));
 
     public void onInitialize() {
         VerticalSlabGenRegistry.init();

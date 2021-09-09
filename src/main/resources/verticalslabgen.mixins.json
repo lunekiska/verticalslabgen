@@ -3,6 +3,7 @@
   "package": "eu.lunekiska.verticalslabgen.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "client.NativeImageAccessor"
   ],
   "client": [
   ],

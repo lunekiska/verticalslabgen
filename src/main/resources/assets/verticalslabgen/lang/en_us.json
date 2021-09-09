@@ -1,5 +1,5 @@
 {
-  "itemGroup.verticalslabgen.vertical_slabs": "Vertical Slabs",
+  "itemGroup.verticalslabgen.vertical_slabs_group": "Vertical Slabs",
 
-  "block.verticalslabgen.vertical_slab": "%s Vertical Slab"
+  "block.verticalslabgen.vertical_slabs": "%s Vertical Slab"
 }

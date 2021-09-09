@@ -20,27 +20,21 @@ package eu.lunekiska.verticalslabgen.resource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.lambdaurora.aurorasdeco.resource.datagen.BlockStateBuilder;
-import dev.lambdaurora.aurorasdeco.resource.datagen.LangBuilder;
 import dev.lambdaurora.aurorasdeco.util.AuroraUtil;
 import eu.lunekiska.verticalslabgen.VerticalSlabGen;
 import eu.lunekiska.verticalslabgen.block.VertSlabBlock;
+import eu.lunekiska.verticalslabgen.registry.SlabTypeB;
+import eu.lunekiska.verticalslabgen.resource.datagen.LangBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.util.regex.Pattern;
-
+import static dev.lambdaurora.aurorasdeco.resource.Datagen.modelBuilder;
 import static dev.lambdaurora.aurorasdeco.util.AuroraUtil.jsonArray;
 
 public final class VertDatagen {
-    public static final Logger LOGGER = LogManager.getLogger("verticalslabgen:datagen");
-
-    private static final Pattern SLABS_TO_BASE_ID = Pattern.compile("[_/]slab$");
-    private static final Pattern SLABS_SEPARATOR_DETECTOR = Pattern.compile("[/]slab$");
 
     private VertDatagen() {
         throw new UnsupportedOperationException("Someone tried to instantiate a static-only class. How?");
@@ -90,7 +84,7 @@ public final class VertDatagen {
             var entry = new JsonObject();
             entries.add(entry);
             entry.addProperty("type", "minecraft:dynamic");
-            entry.addProperty("name", "verticalslabgen:vertical_slab");
+            entry.addProperty("name", "verticalslabgen:vertical_slabs");
         }
 
         root.add("pools", pools);
@@ -118,10 +112,18 @@ public final class VertDatagen {
 
             var builder = new BlockStateBuilder(vertSlabBlock);
 
+            var pathName = vertSlabBlock.getSlabTypeB().getPathName();
+            var blockPathName = "block/vertical_slabs/" + pathName;
+            var slabTexture = vertSlabBlock.getSlabTypeB().getComponent(SlabTypeB.ComponentType.SLABS).texture();
+
+            modelBuilder(VertSlabBlock.VERTICAL_SLAB_MODEL)
+                    .texture("slabs", slabTexture)
+                    .register(VerticalSlabGen.id("item/vertical_slabs/" + pathName));
+
             builder.register();
 
-            langBuilder.addEntry("block.verticalslabgen.vertical_slab." + vertSlabBlock.getSlabTypeB().getAbsoluteLangPath(),
-                    "verticalslabgen.slab_type." + vertSlabBlock.getSlabTypeB().getLangPath());
+            langBuilder.addEntry("block.verticalslabgen.vertical_slabs." + vertSlabBlock.getSlabTypeB().getAbsoluteLangPath(),
+                    "block.verticalslabgen.vertical_slabs", "verticalslabgen.slab_type." + vertSlabBlock.getSlabTypeB().getLangPath());
         });
     }
 }

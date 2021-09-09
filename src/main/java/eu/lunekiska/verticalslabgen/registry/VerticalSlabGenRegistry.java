@@ -29,7 +29,7 @@ public final class VerticalSlabGenRegistry {
     }
 
     public static void init() {
-        SlabTypeB.registerSlabTypeModificationCallback(slabTypeB -> Registrar.register("vertical_slab/" + slabTypeB.getPathName(), new VertSlabBlock(slabTypeB))
+        SlabTypeB.registerSlabTypeModificationCallback(slabTypeB -> Registrar.register("vertical_slabs/" + slabTypeB.getPathName(), new VertSlabBlock(slabTypeB))
             .withItem(new FabricItemSettings().group(VerticalSlabsGroup)),
          SlabTypeB.ComponentType.SLABS);
     }

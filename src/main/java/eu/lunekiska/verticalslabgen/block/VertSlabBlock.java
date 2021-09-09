@@ -17,6 +17,7 @@
 
 package eu.lunekiska.verticalslabgen.block;
 
+import eu.lunekiska.verticalslabgen.VerticalSlabGen;
 import eu.lunekiska.verticalslabgen.registry.SlabTypeB;
 import eu.lunekiska.verticalslabgen.registry.VertSlabType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -28,6 +29,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -49,6 +51,8 @@ public class VertSlabBlock extends HorizontalFacingBlock {
     public static VoxelShape EAST_SHAPE;
     public static VoxelShape SOUTH_SHAPE;
     public static VoxelShape WEST_SHAPE;
+
+    public static final Identifier VERTICAL_SLAB_MODEL = VerticalSlabGen.id("block/template/vertical_slabs");
 
     private static final List<VertSlabBlock> VERT_SLAB_BLOCKS = new ArrayList<>();
 
